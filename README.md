@@ -5,4 +5,4 @@ The game was tested in Google Chrome but also appears to run in Firefox and Micr
 
 Credit for all graphics goes to David E. Gervais published under a Creative Commons license
 
-![Alt text](screenshot.png?raw=true "Screenshot")
+![ScreenShot](https://raw.github.com/devops0x01/fripono/master/screenshot.png)
