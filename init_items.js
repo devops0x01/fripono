@@ -583,8 +583,8 @@ var unique_items = [
     i.slot_type = "hold2";
     i.armor = 14;
     i.history = "dum ditty dum ditty dum dum dum...";
-    i.onEquip = function(){this.equipped = true;p.armor_augment += i.armor;p.updateStats();};
-    i.onUnequip = function(){this.equipped = false;p.armor_augment -= i.armor;p.updateStats();};
+    i.onEquip = function(){this.equipped = true;p.armor_augment += i.armor;p.fortitude+=4;p.updateStats();};
+    i.onUnequip = function(){this.equipped = false;p.armor_augment -= i.armor;fortitude-=4;p.updateStats();};
     
     return i;
   }
