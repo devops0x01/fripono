@@ -18,12 +18,14 @@ function generate_jewelry(level)
   {
     case 0:
       l = [
-        function(){return make_protection_jewelry("amulet of protection 3",2,3,"neck",3,"a greater ring of protection");},
+        function(){return make_protection_jewelry("amulet of protection 1",0,3,"neck",1,"a greater amulet of protection");},
         function(){return make_protection_jewelry("ring of protection",0,0,[],1,"a ring of protection");}
       ];
     break;
     case 1:
       l = [
+        function(){return make_protection_jewelry("amulet of protection 2",2,3,"neck",2,"a greater amulet of protection");},
+        function(){return make_protection_jewelry("amulet of protection 1",0,3,"neck",1,"a greater amulet of protection");},
         function(){return make_protection_jewelry("greater ring of protection",2,2,[],2,"a greater ring of protection");}
       ];
     break;
@@ -550,6 +552,29 @@ var unique_items = [
       {
         p.hp = p.max_hp;
       }
+    };
+    
+    return i;
+  },
+
+  function ring_of_intelligence(){
+    let i = new Item("Ring of Intelligence",new Tile(jewels,1,1),0,0);
+    i.tile.description = "The Ring of Intelligence";
+    i.slot_type = [];
+    i.history = "dum ditty dum ditty dum dum dum" +
+                ".";
+    i.onEquip = function()
+    {
+      this.equipped = true;
+      p.intelligence += 10;
+      p.updateStats();
+    };
+    
+    i.onUnequip = function()
+    {
+      this.equipped = false;
+      p.intelligence -= 10;
+      p.updateStats();
     };
     
     return i;
