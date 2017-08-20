@@ -36,6 +36,7 @@ function Board(s)
 {
   this.items = [];
   this.creatures = [];
+  this.npcs = [];
   this.furniture = [];
   this.traps = [];
   
@@ -161,6 +162,14 @@ Board.prototype.draw = function(ctx)
     ctx.drawImage(this.items[bi].tile.img,this.items[bi].tile.img_x,
                   this.items[bi].tile.img_y,32,32,this.items[bi].x*SCALE+screenX,
                   this.items[bi].y*SCALE+screenY,SCALE,SCALE);
+  }
+
+  //draw the NPCs
+  for(let n = 0;n < this.npcs.length;n++)
+  {
+    ctx.drawImage(this.npcs[n].tile.img,this.npcs[n].tile.img_x,
+                  this.npcs[n].tile.img_y,32,32,this.npcs[n].x*SCALE+screenX,
+                  this.npcs[n].y*SCALE+screenY,SCALE,SCALE);
   }
 
   //draw creatures
@@ -360,11 +369,16 @@ function init_board()
     
     board.creatures = generate_enemies(current_level);
     board.creatures.push(generate_level_boss(current_level));  
+
+    //add some NPCs
+    npc = npcs[0]();
+    board.npcs.push(npc)
     
     //Player is always started in room 0. So, do a slice on the rooms 
     //so that room 0 is not included. That way the player won't
     //start in a room with creatures.
     set_random_coordinates(board.creatures,rooms.slice(1));
+    set_random_coordinates(board.npcs,rooms);
     set_random_coordinates(board.items,rooms);
     set_random_coordinates(board.furniture,rooms);
     set_random_coordinates(board.traps,rooms);

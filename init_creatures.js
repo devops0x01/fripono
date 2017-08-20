@@ -103,6 +103,22 @@ function make_enemy(g,n,tx,ty,a,hp,d)
   return c;
 }
 
+function merchant_update(c)
+{
+  
+}
+
+function make_npc(g,n,tx,ty,a,hp,d)
+{
+  let c = new Creature(new Tile(g,tx,ty),0,0);
+  //c.update = enemy_update;
+  c.attack = a;
+  c.hp = hp;
+  c.max_hp = hp;
+
+  return c;
+}
+
 function make_level_boss(g,n,tx,ty,a,hp,d)
 {
   let c = make_enemy(g,n,tx,ty,a,hp,d);
@@ -112,6 +128,20 @@ function make_level_boss(g,n,tx,ty,a,hp,d)
   
   return c;
 }
+
+var npcs = [
+  function()
+  {
+    let npc = make_npc(people,"merchant",1,2,0,10,"a merchant");
+    npc.update = merchant_update;
+    npc.engage = function(){
+      //open_trade_menu([[make_armor("leather helm",9,0,"head",2,0,"a leather helm"),5]]);
+      show_trade = true;
+    };
+
+    return npc;
+  }
+];
 
 var level1_enemies = [
             function(){return make_enemy(enemies,"worm",2,5,5,5,"a worm");},

@@ -107,6 +107,35 @@ function draw_screen()
       context.fillText("Ftd: " + p.fortitude,tx,ty+=32);
   
       display_messages();
+
+      //draw the trading menu
+      if(show_trade)
+      {
+        context.fillStyle = "#222222";
+        context.fillRect(100,100,canvas.width-180,canvas.height-180);
+
+        context.font = context.font.replace(/\d+px/,"24px");
+                
+        let x = 130;
+        let y = 130;
+        
+        context.fillStyle = "#ff0000";
+        context.fillText("type 'x' to close",canvas.width - 260,y);
+        
+        context.fillStyle = "#00ff00";
+
+        context.fillText("For sale:",x,y);
+        
+
+        context.fillStyle = "#0000ff";
+
+        //[[make_armor("leather helm",9,0,"head",2,0,"a leather helm"),5]];
+
+        context.fillText("test",x,y+=32);
+        context.fillText("test",x,y+=32);
+        context.fillText("test",x,y+=32);
+
+      }
       
       //draw a help dialog
       if(show_help)
@@ -120,7 +149,7 @@ function draw_screen()
         let y = 130;
         
         context.fillStyle = "#ff0000";
-        context.fillText("type '?' to close",canvas.width - 260,y);
+        context.fillText("type 'x' to close",canvas.width - 260,y);
         
         context.fillStyle = "#00ff00";
 
@@ -268,6 +297,15 @@ function creatureHere(x,y)
       hit_detected = true;
     }   
   }
+
+  for(let n = 0; n < board.npcs.length; n++)
+  {
+    if((board.npcs[n].x == x) && (board.npcs[n].y == y))
+    {
+      board.npcs[n].engage();
+    }
+  }
+
   return hit_detected;
 }
 
@@ -280,6 +318,11 @@ function update_all()
   for(let ci = board.creatures.length - 1; ci >= 0; ci--)
   {
       board.creatures[ci].update(board.creatures[ci]);
+  }
+
+  for(let ni = board.npcs.length - 1; ni >= 0; ni--)
+  {
+      board.npcs[ni].update(board.npcs[ni]);
   }
 }
 /*
@@ -295,12 +338,12 @@ function handleKeypress(e)
 {
   if(e.key == "?")
   {
-    if(show_help === false)
-    {
+    //if(show_help === false)
+    //{
       show_help = true;
-    }else{
-      show_help = false;
-    }
+    //}else{
+    //  show_help = false;
+    //}
   }
   
   if(e.key == "q")
@@ -583,6 +626,12 @@ function handleKeypress(e)
   if(e.key == "p")
   {
     num_messages_to_display = 10;
+  }
+
+  if(e.key == "x")
+  {
+    show_trade = false;
+    show_help = false;
   }
 
   draw_screen();
