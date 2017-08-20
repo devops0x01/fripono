@@ -25,6 +25,8 @@ function Creature(t,x,y)
   this.effects = [];
   
   this.boss = false;
+
+  this.gold = 50;
   
   this.drop = null;
   

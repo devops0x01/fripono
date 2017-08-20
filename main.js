@@ -24,6 +24,8 @@ var num_messages_to_display = 5;
 var show_help  = true;
 var show_trade = false;
 
+var trade_items = [];
+
 window.onkeypress = handleKeypress; 
 //window.onclick = handleMouse;
 

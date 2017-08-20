@@ -1,4 +1,20 @@
 
+function make_gold(v)
+{
+  let i = new Item("gold",new Tile(misc,2,1),0,0);
+  i.onPickup = function(){p.gold += v; p.updateStats(); console.log("picking up the gold: " + v.toString()); };
+  i.tile.description = "a pile of gold";
+ 
+  return i;
+}
+
+function generate_gold(level)
+{
+  value = get_random(1,30);
+
+  return make_gold(value);
+}
+
 function make_protection_jewelry(n,tx,ty,s,prot,d)
 {
   let i = new Item(n,new Tile(jewels,tx,ty),0,0);
@@ -480,7 +496,7 @@ function generate_item(level)
     i = unique_items[ui]();
     unique_items.splice(ui,1);
   }else{
-    let item_type = get_random(0,4);
+    let item_type = get_random(0,5);
     switch(item_type)
     {
       case 0:
@@ -497,6 +513,8 @@ function generate_item(level)
       break;
       case 4:
         i = generate_potion(level);
+      case 5:
+        i = generate_gold(level);
       break;
     }
   }

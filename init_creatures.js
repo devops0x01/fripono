@@ -134,8 +134,16 @@ var npcs = [
   {
     let npc = make_npc(people,"merchant",1,2,0,10,"a merchant");
     npc.update = merchant_update;
+    npc.trade_items = [
+      [make_armor("leather helm",9,0,"head",2,0,"a leather helm"),5],
+      [make_armor("rusted chain mail",4,4,"body",8,0,"a rusted chain mail shirt"),20],
+      [make_protection_jewelry("amulet of protection 2",1,3,"neck",2,"a greater amulet of protection"),15],
+      [make_armor("leather gloves",3,2,"hands",1,0,"some leather gloves"),10],
+      [make_healing_potion("medium health potion",4,1,30,"a medium health potion"),5]
+    ];
     npc.engage = function(){
       //open_trade_menu([[make_armor("leather helm",9,0,"head",2,0,"a leather helm"),5]]);
+      trade_items = npc.trade_items;
       show_trade = true;
     };
 

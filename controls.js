@@ -81,7 +81,7 @@ function draw_screen()
       let tx = canvas.width-160;
       
       context.fillStyle = "#2d2d2d";
-      context.fillRect(tx,160+SCALE,256,320);
+      context.fillRect(tx,160+SCALE,256,340);
       
       tx+=15;
       
@@ -99,6 +99,9 @@ function draw_screen()
   
       context.fillStyle = "#ffffff";
       context.fillText("Level: " + (current_level + 1).toString(),tx,ty+=32);
+
+      context.fillStyle = "#ffff00";
+      context.fillText("Gold: " + p.gold.toString(),tx,ty+=32);
       
       context.fillStyle = "#22ff33";
       context.fillText("Int: " + p.intelligence,tx,ty+=32);
@@ -111,7 +114,45 @@ function draw_screen()
       //draw the trading menu
       if(show_trade)
       {
-        context.fillStyle = "#222222";
+        window.onkeypress = function(e){
+          if(e.key == "x")
+          {
+            window.onkeypress = handleKeypress;
+            show_trade = false; 
+          }
+
+          switch(e.key)
+          {
+            case "0":
+            case "1":
+            case "2":
+            case "3":
+            case "4":
+            case "5":
+            case "6":
+            case "7":
+            case "8":
+            case "9":
+              ind = parseInt(e.key);
+              if(trade_items[ind])
+              {
+                if(p.gold >= trade_items[ind][1])
+                {
+                  p.items.push(trade_items[ind][0]);
+                  trade_items[ind][0].onPickup();
+                  p.gold -= trade_items[ind][1];
+                  trade_items.splice(ind,1); 
+                }else{
+                  //TODO: not enough gold!
+                }
+              }
+            break;
+          }
+
+          draw_screen();
+        };
+
+        context.fillStyle = "#2d2d2d";
         context.fillRect(100,100,canvas.width-180,canvas.height-180);
 
         context.font = context.font.replace(/\d+px/,"24px");
@@ -124,15 +165,26 @@ function draw_screen()
         
         context.fillStyle = "#00ff00";
 
-        context.fillText("For sale:",x,y);
+        context.fillText("For sale: name | attack | armor | strength | cost",x,y);
         
 
         context.fillStyle = "#0000ff";
 
-        let items = [[make_armor("leather helm",9,0,"head",2,0,"a leather helm"),5]];
-        for(let i = 0; i < items.length; i++)
+        //let items = [[make_armor("leather helm",9,0,"head",2,0,"a leather helm"),5]];
+        for(let i = 0; i < trade_items.length; i++)
         {
-          context.fillText(items[i][0].name + "  |  " + items[i][1].toString(),x,y+=32);
+          context.drawImage(trade_items[i][0].tile.img,
+                            trade_items[i][0].tile.img_x, trade_items[i][0].tile.img_y,
+                            32,32,
+                            x, y,
+                            SCALE,SCALE+4);
+
+          context.fillText(trade_items[i][0].name + "  |  " +
+                           trade_items[i][0].attack.toString() + "  |  " +
+                           trade_items[i][0].armor.toString()  + "  |  " +
+                           trade_items[i][0].armor.toString()  + "  |  " +
+                           trade_items[i][1].toString(),
+                           x+SCALE,y+=36);
         }
 
       }
@@ -472,8 +524,11 @@ function handleKeypress(e)
       {
         //console.log("getting item: " + board.items[bi].name);
         screen_messages.unshift("pickedup item: " + board.items[bi].name);
-        
-        p.items.push(board.items[bi]);
+       
+        if(board.items[bi].name != "gold")
+        {
+          p.items.push(board.items[bi]);
+        }
         board.items[bi].onPickup();
         board.items.splice(bi,1);
         
