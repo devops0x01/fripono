@@ -224,7 +224,7 @@ Board.prototype.draw = function(ctx)
   {
     let bx = SCALE*p.selected_item;
     let by = SCALE;
-    ctx.fillRect(bx,by,SCALE*8,SCALE*4);
+    ctx.fillRect(bx,by,SCALE*8,SCALE*5);
     
     let i = p.items[p.selected_item];
     
