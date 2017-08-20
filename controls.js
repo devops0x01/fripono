@@ -303,6 +303,7 @@ function creatureHere(x,y)
     if((board.npcs[n].x == x) && (board.npcs[n].y == y))
     {
       board.npcs[n].engage();
+      hit_detected = true;
     }
   }
 
