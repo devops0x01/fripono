@@ -1,7 +1,24 @@
 
 function make_gold(v)
 {
-  let i = new Item("gold",new Tile(misc,2,1),0,0);
+  let t;
+  if(v < 5)
+  {
+    t = new Tile(misc,0,1);
+  }else if((v > 4) && (v < 10))
+  {
+    t = new Tile(misc,1,1);
+  }else if((v > 9) && (v < 15))
+  {
+    t = new Tile(misc,2,1);
+  }else if((v > 14) && (v < 25))
+  {
+    t = new Tile(misc,3,1);
+  }else if(v > 24)
+  {
+    t = new Tile(misc,4,1);
+  }
+  let i = new Item("gold",t,0,0);
   i.onPickup = function(){p.gold += v; p.updateStats(); console.log("picking up the gold: " + v.toString()); };
   i.tile.description = "a pile of gold";
  
@@ -10,7 +27,7 @@ function make_gold(v)
 
 function generate_gold(level)
 {
-  value = get_random(1,30);
+  let value = (get_random(1,15) + level);
 
   return make_gold(value);
 }
@@ -524,7 +541,8 @@ function generate_item(level)
 
 function generate_items(level)
 {
-  let n = get_random(5,10);
+  //let n = get_random(5,10);
+  let n = get_random(5,13);
   let a = [];
   
   for(let i = 0; i < n; i++)
