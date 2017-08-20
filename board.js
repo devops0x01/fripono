@@ -233,7 +233,7 @@ Board.prototype.draw = function(ctx)
   {
     let bx = SCALE*p.selected_item;
     let by = SCALE;
-    ctx.fillRect(bx,by,SCALE*8,SCALE*4);
+    ctx.fillRect(bx,by,SCALE*8,SCALE*5);
     
     let i = p.items[p.selected_item];
     
@@ -246,6 +246,10 @@ Board.prototype.draw = function(ctx)
     ctx.fillText("is equipped: " + i.equipped.toString(),bx,by+=24);
     ctx.fillText("armor: " + i.armor.toString(),bx,by+=24);
     ctx.fillText("attack: " + i.attack.toString(),bx,by+=24); 
+    if(i.strength)
+    {
+      ctx.fillText("strength: " + i.strength.toString(),bx,by+=24); 
+    }
   
     this.show_item_stats = false;
   }
