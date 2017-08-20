@@ -190,7 +190,8 @@ function make_healing_potion(n,tx,ty,s,d)
   let i = new Item(n,new Tile(potions,tx,ty),0,0);
   i.tile.description = d;
   i.uses = 1;
-  i.onUse = function(){this.uses--;p.heal(s);};
+  i.strength = s;
+  i.onUse = function(){this.uses--;p.heal(i.strength);};
 
   return i;
 }

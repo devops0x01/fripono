@@ -237,6 +237,10 @@ Board.prototype.draw = function(ctx)
     ctx.fillText("is equipped: " + i.equipped.toString(),bx,by+=24);
     ctx.fillText("armor: " + i.armor.toString(),bx,by+=24);
     ctx.fillText("attack: " + i.attack.toString(),bx,by+=24); 
+    if(i.strength)
+    {
+      ctx.fillText("strength: " + i.strength.toString(),bx,by+=24); 
+    }
   
     this.show_item_stats = false;
   }
