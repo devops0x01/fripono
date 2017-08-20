@@ -129,11 +129,11 @@ function draw_screen()
 
         context.fillStyle = "#0000ff";
 
-        //[[make_armor("leather helm",9,0,"head",2,0,"a leather helm"),5]];
-
-        context.fillText("test",x,y+=32);
-        context.fillText("test",x,y+=32);
-        context.fillText("test",x,y+=32);
+        let items = [[make_armor("leather helm",9,0,"head",2,0,"a leather helm"),5]];
+        for(let i = 0; i < items.length; i++)
+        {
+          context.fillText(items[i][0].name + "  |  " + items[i][1].toString(),x,y+=32);
+        }
 
       }
       
