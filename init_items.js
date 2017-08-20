@@ -513,7 +513,7 @@ function generate_item(level)
     i = unique_items[ui]();
     unique_items.splice(ui,1);
   }else{
-    let item_type = get_random(0,5);
+    let item_type = get_random(0,4);
     switch(item_type)
     {
       case 0:
@@ -530,8 +530,6 @@ function generate_item(level)
       break;
       case 4:
         i = generate_potion(level);
-      case 5:
-        i = generate_gold(level);
       break;
     }
   }
@@ -541,13 +539,19 @@ function generate_item(level)
 
 function generate_items(level)
 {
-  //let n = get_random(5,10);
-  let n = get_random(5,13);
+  let n = get_random(3,5);
   let a = [];
   
   for(let i = 0; i < n; i++)
   {
     a.push(generate_item(level));
+  }
+
+  //add some gold
+  n = get_random(1,3);
+  for(let i = 0; i < n; i++)
+  {
+    a.push(generate_gold(level));
   }
   
   return a;

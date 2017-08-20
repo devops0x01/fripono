@@ -134,6 +134,20 @@ var npcs = [
   {
     let npc = make_npc(people,"merchant",1,2,0,10,"a merchant");
     npc.update = merchant_update;
+
+    npc.trade_items = [];
+    let num_items = get_random(3,8);
+
+    for(let i = 0; i < num_items; i++)
+    {
+      i = generate_item(current_level);
+      npc.trade_items.push([i,10]);
+    }
+
+    npc.trade_items.push([generate_item(current_level+1),20]);
+    npc.trade_items.push([generate_item(current_level+1),30]);
+
+    /*
     npc.trade_items = [
       [make_armor("leather helm",9,0,"head",2,0,"a leather helm"),5],
       [make_armor("rusted chain mail",4,4,"body",8,0,"a rusted chain mail shirt"),20],
@@ -141,6 +155,7 @@ var npcs = [
       [make_armor("leather gloves",3,2,"hands",1,0,"some leather gloves"),10],
       [make_healing_potion("medium health potion",4,1,30,"a medium health potion"),5]
     ];
+    */
     npc.engage = function(){
       //open_trade_menu([[make_armor("leather helm",9,0,"head",2,0,"a leather helm"),5]]);
       trade_items = npc.trade_items;
