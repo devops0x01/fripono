@@ -177,14 +177,14 @@ function draw_screen()
                             trade_items[i][0].tile.img_x, trade_items[i][0].tile.img_y,
                             32,32,
                             x, y,
-                            SCALE,SCALE+4);
+                            SCALE,SCALE+8);
 
           context.fillText(trade_items[i][0].name + "  |  " +
                            trade_items[i][0].attack.toString() + "  |  " +
                            trade_items[i][0].armor.toString()  + "  |  " +
                            trade_items[i][0].armor.toString()  + "  |  " +
                            trade_items[i][1].toString(),
-                           x+SCALE,y+=36);
+                           x+SCALE,y+=40);
         }
 
       }

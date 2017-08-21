@@ -140,12 +140,12 @@ var npcs = [
 
     for(let i = 0; i < num_items; i++)
     {
-      i = generate_item(current_level);
-      npc.trade_items.push([i,10]);
+      item = generate_item(current_level);
+      npc.trade_items.push([item,10]);
     }
 
     npc.trade_items.push([generate_item(current_level+1),20]);
-    npc.trade_items.push([generate_item(current_level+1),30]);
+    npc.trade_items.push([generate_item(current_level+2),30]);
 
     /*
     npc.trade_items = [
