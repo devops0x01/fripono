@@ -222,18 +222,31 @@ function draw_screen()
         context.fillText("'a' - activate tile or enter door",x,y+=32);
         context.fillText("'o' - open the chest that the player is standing on",x,y+=32);
         context.fillText("'i' - drink selected potion",x,y+=32);
-        
+
         //movement
         //context.fillText("      ",x,y+=32);
         y=130;
         x+=550;
         
+        
         context.fillStyle = "#00ff00";
         
         context.fillText("  Movement:",x,y);
         
-        context.fillStyle = "#0000ff";
-        
+        context.fillStyle = "#ffffff";
+
+        y+=32;        
+
+        context.fillText("To attack, walk into an enemy",x,y+=32);
+        context.fillText("To wait in place, press 'r'",x,y+=32);
+        context.fillText("(good for making enemies come to you)",x,y+=32);
+
+        y+=32;        
+
+        //context.fillStyle = "#0000ff";
+
+        context.fillText("Use the keys below to move in the indicated direction:",x,y+=32);
+
         context.fillText("    y   k  u",x,y+=32);
         context.fillText("      \\ | /",x,y+=32);
         context.fillText(" h  -    -  l",x,y+=32);
