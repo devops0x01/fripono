@@ -173,10 +173,12 @@ function draw_screen()
         //let items = [[make_armor("leather helm",9,0,"head",2,0,"a leather helm"),5]];
         for(let i = 0; i < trade_items.length; i++)
         {
+          context.fillText(i.toString() + ".",x,y+40);
+
           context.drawImage(trade_items[i][0].tile.img,
                             trade_items[i][0].tile.img_x, trade_items[i][0].tile.img_y,
                             32,32,
-                            x, y,
+                            x+16, y,
                             SCALE,SCALE+8);
 
           context.fillText(trade_items[i][0].name + "  |  " +
@@ -184,7 +186,7 @@ function draw_screen()
                            trade_items[i][0].armor.toString()  + "  |  " +
                            trade_items[i][0].armor.toString()  + "  |  " +
                            trade_items[i][1].toString(),
-                           x+SCALE,y+=40);
+                           x+SCALE+16,y+=40);
         }
 
       }
