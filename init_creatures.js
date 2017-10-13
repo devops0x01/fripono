@@ -163,6 +163,12 @@ var npcs = [
     };
 
     return npc;
+  },
+  function()
+  {
+    let npc = make_npc(people,"some guy",2,1,0,10,"a person");
+
+    return npc;
   }
 ];
 

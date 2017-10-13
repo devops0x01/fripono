@@ -375,8 +375,11 @@ function init_board()
     board.creatures.push(generate_level_boss(current_level));  
 
     //add some NPCs
-    npc = npcs[0]();
-    board.npcs.push(npc)
+    let npc = npcs[0]();
+    board.npcs.push(npc);
+
+    npc = npcs[1]();
+    board.npcs.push(npc);
     
     //Player is always started in room 0. So, do a slice on the rooms 
     //so that room 0 is not included. That way the player won't
