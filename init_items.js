@@ -529,6 +529,31 @@ var unique_items = [
    
     return i;
   },
+
+  function robe_of_defense(){
+   let i = new Item("Robe of Defense",new Tile(armor,7,3),0,0);
+   i.tile.description = "The Robe of Defence";
+   i.slot_type = "body";
+   i.history = "" +
+               "" +
+               "";
+   i.onEquip = function()
+   {
+     this.equipped = true;
+     p.dexterity += 10;
+     p.updateStats();
+   };
+
+   i.onUnequip = function()
+   {
+     this.equipped = false;
+     p.dexterity -= 10;
+     p.updateStats();
+   };
+
+   return i;
+  },
+ 
   
   function amulet_of_life(){
     let i = new Item("Amulet of Life",new Tile(jewels,2,4),0,0);
