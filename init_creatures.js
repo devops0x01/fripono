@@ -166,15 +166,20 @@ var npcs = [
   },
   function()
   {
-    let npc = make_npc(people,"some guy",2,1,0,10,"a person");
+    let npc = make_npc(people,"quest giver",2,1,0,10,"a quest giver");
     
     let q = new Quest();
     q.name = "The grand test quest!";
+    q.check = function(){
+      if(p.gold < 20)
+      {
+        q.end();
+      }
+    };
+
 
     npc.quest = q;
-    
     npc.quest_given = false;
-     
 
     npc.engage = function(){
 
@@ -183,7 +188,7 @@ var npcs = [
         this.quest.start();
         this.quest_given = true;
       }else{
-        this.quest.end();
+        this.quest.check();
       }
 
     };
