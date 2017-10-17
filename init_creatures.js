@@ -167,12 +167,25 @@ var npcs = [
   function()
   {
     let npc = make_npc(people,"some guy",2,1,0,10,"a person");
+    
+    let q = new Quest();
+    q.name = "The grand test quest!";
+
+    npc.quest = q;
+    
+    npc.quest_given = false;
+     
 
     npc.engage = function(){
-      let q = new Quest();
-      q.name = "The grand test quest!";
-      q.start();
-      q.end();
+
+      if(this.quest_given == false)
+      {
+        this.quest.start();
+        this.quest_given = true;
+      }else{
+        this.quest.end();
+      }
+
     };
 
     return npc;
