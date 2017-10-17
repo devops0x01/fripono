@@ -168,6 +168,13 @@ var npcs = [
   {
     let npc = make_npc(people,"some guy",2,1,0,10,"a person");
 
+    npc.engage = function(){
+      let q = new Quest();
+      q.name = "The grand test quest!";
+      q.start();
+      q.end();
+    };
+
     return npc;
   }
 ];
