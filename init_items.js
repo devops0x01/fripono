@@ -19,7 +19,7 @@ function make_gold(v)
     t = new Tile(misc,4,1);
   }
   let i = new Item("gold",t,0,0);
-  i.onPickup = function(){p.gold += v; p.updateStats(); console.log("picking up the gold: " + v.toString()); };
+  i.onPickup = function(){p.gold += v; p.updateStats();};
   i.tile.description = "a pile of gold";
  
   return i;
