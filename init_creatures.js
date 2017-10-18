@@ -169,14 +169,40 @@ var npcs = [
     let npc = make_npc(people,"quest giver",2,1,0,10,"a quest giver");
     
     let q = new Quest();
-    q.name = "The grand test quest!";
-    q.check = function(){
-      if(p.gold < 20)
+    q.name = "Health potion needed.";
+
+    q.start_action = function(){
+      screen_messages.unshift("Please, I'm dying here. Could you spare a small health potion?");
+    };
+
+    q.end_condition = function(){
+      let ff = function(el){ return el.name == "small health potion" };
+      if(p.items.find(ff))
       {
-        q.end();
+        return true;
+      }else{
+        return false;
       }
     };
 
+    q.end_action = function(){
+      let ff = function(el){ return el.name == "small health potion" };
+      let i = p.items.findIndex(ff);
+      p.items.splice(i,1);
+      screen_messages.unshift("Oh, thank you so much! Here take this.");
+      p.gold += 30;
+    };
+/*
+    q.check = function(){
+      let ff = function(el){return el.name == "small health potion"};
+      if(p.items.find(ff))
+      {
+        let i = p.items.findIndex(ff);
+        p.items.splice(i,1);
+        q.end();
+      }
+    };
+*/
 
     npc.quest = q;
     npc.quest_given = false;
@@ -188,7 +214,15 @@ var npcs = [
         this.quest.start();
         this.quest_given = true;
       }else{
-        this.quest.check();
+
+        let r = this.quest.check();
+        if(r == false)
+        {
+          //TODO: logic mistake here somewhere...
+          screen_messages.unshift("Please, all I need is a small health potion...");
+        }else{
+          screen_messages.unshift("Thanks again!");
+        }
       }
 
     };
