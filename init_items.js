@@ -18,14 +18,14 @@ function generate_jewelry(level)
   {
     case 0:
       l = [
-        function(){return make_protection_jewelry("amulet of protection 1",0,3,"neck",1,"a greater amulet of protection");},
+        function(){return make_protection_jewelry("amulet of protection 1",0,3,"neck",1,"an amulet of protection 1");},
         function(){return make_protection_jewelry("ring of protection",0,0,[],1,"a ring of protection");}
       ];
     break;
     case 1:
       l = [
-        function(){return make_protection_jewelry("amulet of protection 2",1,3,"neck",2,"a greater amulet of protection");},
-        function(){return make_protection_jewelry("amulet of protection 1",0,3,"neck",1,"a greater amulet of protection");},
+        function(){return make_protection_jewelry("amulet of protection 2",1,3,"neck",2,"an amulet of protection 2");},
+        function(){return make_protection_jewelry("amulet of protection 1",0,3,"neck",1,"an amulet of protection 1");},
         function(){return make_protection_jewelry("greater ring of protection",2,2,[],2,"a greater ring of protection");}
       ];
     break;
@@ -37,7 +37,7 @@ function generate_jewelry(level)
     default:
       l = [
         function(){return make_protection_jewelry("ring of protection 3",0,1,[],3,"a greater ring of protection");},
-        function(){return make_protection_jewelry("amulet of protection 3",2,3,"neck",3,"a greater ring of protection");}
+        function(){return make_protection_jewelry("amulet of protection 3",2,3,"neck",3,"an amulet of protection 3");}
       ];
     break;
   }
