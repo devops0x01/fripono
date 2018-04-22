@@ -103,6 +103,22 @@ function make_enemy(g,n,tx,ty,a,hp,d)
   return c;
 }
 
+function merchant_update(c)
+{
+  
+}
+
+function make_npc(g,n,tx,ty,a,hp,d)
+{
+  let c = new Creature(new Tile(g,tx,ty),0,0);
+  //c.update = enemy_update;
+  c.attack = a;
+  c.hp = hp;
+  c.max_hp = hp;
+
+  return c;
+}
+
 function make_level_boss(g,n,tx,ty,a,hp,d)
 {
   let c = make_enemy(g,n,tx,ty,a,hp,d);
@@ -112,6 +128,49 @@ function make_level_boss(g,n,tx,ty,a,hp,d)
   
   return c;
 }
+
+var npcs = [
+  function()
+  {
+    let npc = make_npc(people,"merchant",1,2,0,10,"a merchant");
+    npc.update = merchant_update;
+
+    npc.trade_items = [];
+    let num_items = get_random(3,8);
+
+    for(let i = 0; i < num_items; i++)
+    {
+      item = generate_item(current_level);
+      npc.trade_items.push([item,10]);
+    }
+
+    npc.trade_items.push([generate_item(current_level+1),20]);
+    npc.trade_items.push([generate_item(current_level+2),30]);
+
+    /*
+    npc.trade_items = [
+      [make_armor("leather helm",9,0,"head",2,0,"a leather helm"),5],
+      [make_armor("rusted chain mail",4,4,"body",8,0,"a rusted chain mail shirt"),20],
+      [make_protection_jewelry("amulet of protection 2",1,3,"neck",2,"a greater amulet of protection"),15],
+      [make_armor("leather gloves",3,2,"hands",1,0,"some leather gloves"),10],
+      [make_healing_potion("medium health potion",4,1,30,"a medium health potion"),5]
+    ];
+    */
+    npc.engage = function(){
+      //open_trade_menu([[make_armor("leather helm",9,0,"head",2,0,"a leather helm"),5]]);
+      trade_items = npc.trade_items;
+      show_trade = true;
+    };
+
+    return npc;
+  },
+  function()
+  {
+    let npc = make_npc(people,"some guy",2,1,0,10,"a person");
+
+    return npc;
+  }
+];
 
 var level1_enemies = [
             function(){return make_enemy(enemies,"worm",2,5,5,5,"a worm");},

@@ -1,4 +1,37 @@
 
+function make_gold(v)
+{
+  let t;
+  if(v < 5)
+  {
+    t = new Tile(misc,0,1);
+  }else if((v > 4) && (v < 10))
+  {
+    t = new Tile(misc,1,1);
+  }else if((v > 9) && (v < 15))
+  {
+    t = new Tile(misc,2,1);
+  }else if((v > 14) && (v < 25))
+  {
+    t = new Tile(misc,3,1);
+  }else if(v > 24)
+  {
+    t = new Tile(misc,4,1);
+  }
+  let i = new Item("gold",t,0,0);
+  i.onPickup = function(){p.gold += v; p.updateStats();};
+  i.tile.description = "a pile of gold";
+ 
+  return i;
+}
+
+function generate_gold(level)
+{
+  let value = (get_random(1,15) + level);
+
+  return make_gold(value);
+}
+
 function make_protection_jewelry(n,tx,ty,s,prot,d)
 {
   let i = new Item(n,new Tile(jewels,tx,ty),0,0);
@@ -506,12 +539,19 @@ function generate_item(level)
 
 function generate_items(level)
 {
-  let n = get_random(5,10);
+  let n = get_random(3,5);
   let a = [];
   
   for(let i = 0; i < n; i++)
   {
     a.push(generate_item(level));
+  }
+
+  //add some gold
+  n = get_random(1,3);
+  for(let i = 0; i < n; i++)
+  {
+    a.push(generate_gold(level));
   }
   
   return a;
