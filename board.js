@@ -378,9 +378,6 @@ function init_board()
     let npc = npcs[0]();
     board.npcs.push(npc);
 
-    npc = npcs[1]();
-    board.npcs.push(npc);
-    
     //Player is always started in room 0. So, do a slice on the rooms 
     //so that room 0 is not included. That way the player won't
     //start in a room with creatures.
