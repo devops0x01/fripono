@@ -681,7 +681,7 @@ var unique_items = [
   },
   
     function boots_of_regrowth(){
-    let i = new Item("Boots of Regrowth",new Tile(armor,1,9),0,0);
+    let i = new Item("Boots of Regrowth",new Tile(armor,9,1),0,0);
     i.tile.description = "Boots of Regrowth";
     i.slot_type = "feet";
     i.armor = 6;
