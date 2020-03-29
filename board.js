@@ -386,6 +386,10 @@ function init_board()
     set_random_coordinates(board.items,rooms);
     set_random_coordinates(board.furniture,rooms);
     set_random_coordinates(board.traps,rooms);
+
+    //ef = make_grave();
+    //set_random_coordinates([ef],rooms);
+    //board.furniture.push(ef);
     
   }else{
     let fill_wall = walls_by_level[current_level]();
