@@ -6,12 +6,11 @@ function QuestEvent(n,x,y)
   this.y = y;
   this.triggered = false;
   console.log("event: " + this.name + "x: " + x + " y: " + y);
-  //let enemy = make_enemy(undead,"",0,6,95,100,"a ");
-  //enemy.x = x;
-  //enemy.y = y;
-  //console.log("creature: " + enemy.name + "x: " + enemy.x + " y: " + enemy.y);
-  //board.creatures.push(enemy);
 }
+
+QuestEvent.prototype.setTriggered = function(t){
+  this.triggered = t;
+};
 
 QuestEvent.prototype.action = function(){
   if(this.triggered == false)
