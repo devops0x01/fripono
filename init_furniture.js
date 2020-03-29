@@ -5,22 +5,50 @@ function make_furniture(g,n,tx,ty)
   return c;
 }
 
+function make_life_fountain()
+{
+  let c = make_furniture(edging3,"fountain",2,9);
+  let e = new QuestEvent("life fountain",0,0);
+  e.action = function()
+  {
+    if(this.triggered == false)
+    {
+      p.hp = p.max_hp
+      this.triggered=true
+    }
+  }
+  c.tile.onActivate = function()
+  {
+    e.x = c.x
+    e.y = c.y
+    e.action();
+  };
+  
+  return c;
+}
+
 function make_grave()
 {
   let c = make_furniture(edging3,"grave",2,8);
   let e = new QuestEvent("event activated!",c.x,c.y);
-  c.tile.onActivate = function()
+  let r = get_random(0,1);
+  if(r == 0)
   {
-    /*
     e.action = function()
     {
-      let enemy = make_enemy(undead,"",0,6,10,10,"a ");
-      enemy.x = c.x;
-      enemy.y = c.y;
-      console.log("creature: " + enemy.name + "x: " + enemy.x + " y: " + enemy.y);
-      board.creatures.push(enemy);
+      if(this.triggered == false)
+      {
+        let enemy = make_enemy(undead,"grave skeleton",0,6,10,10,"a ");
+        enemy.x = c.x;
+        enemy.y = c.y;
+        console.log("creature: " + enemy.name + "x: " + enemy.x + " y: " + enemy.y);
+        board.creatures.push(enemy);
+        this.triggered = true
+      }
     }
-    */
+  }
+  c.tile.onActivate = function()
+  {
     /*e.action = function()
     {
       let g = make_gold(7);
@@ -32,6 +60,7 @@ function make_grave()
     e.x = c.x
     e.y = c.y
     e.action();
+    e.triggered = true;
   };
 
   return c;
@@ -71,6 +100,7 @@ var type1_furniture =
             function(){return make_furniture(misc,"skull",1,6);},
             function(){return make_furniture(misc,"broken bone",2,6);},
             function(){return make_furniture(misc,"giant skeleton",3,6);},
+            function(){return make_life_fountain();},
             function(){return make_grave();}
           ];
           

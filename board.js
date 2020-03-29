@@ -390,6 +390,10 @@ function init_board()
     //ef = make_grave();
     //set_random_coordinates([ef],rooms);
     //board.furniture.push(ef);
+
+    //lf = make_life_fountain();
+    //set_random_coordinates([lf],rooms);
+    //board.furniture.push(lf);
     
   }else{
     let fill_wall = walls_by_level[current_level]();
