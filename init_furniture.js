@@ -38,7 +38,7 @@ function make_grave()
     {
       if(this.triggered == false)
       {
-        let enemy = make_enemy(undead,"grave skeleton",0,6,10,10,"a ");
+        let enemy = make_enemy(undead,"grave skeleton",0,6,10*current_level/2,10*current_level,"a ");
         enemy.x = c.x;
         enemy.y = c.y;
         console.log("creature: " + enemy.name + "x: " + enemy.x + " y: " + enemy.y);
@@ -69,21 +69,43 @@ function make_grave()
 function make_chest(t)
 {
   let f = make_furniture(misc,"wooden chest",t,0);
-  f.tile.onActivate = function()
+  let r = get_random(0,10)
+  if(r == 0)
   {
-    f.tile = new Tile(misc,6,0);
-    let i;
-    if(t > 0)
+    e = new QuestEvent("chest event",0,0);
+    e.action = function()
     {
-      i = generate_item(current_level+1);
-    }else{
-      i = generate_item(current_level);
+      if(this.triggered == false)
+      {
+        let enemy = make_enemy(undead,"grave skeleton",0,6,10*current_level/2,10*current_level,"a ");
+        enemy.x = f.x;
+        enemy.y = f.y;
+        console.log("creature: " + enemy.name + "x: " + enemy.x + " y: " + enemy.y);
+        board.creatures.push(enemy);
+        this.triggered = true
+      }
     }
-    i.x = f.x;
-    i.y = f.y;
-    board.items.push(i);
-  };
-    
+    f.tile.onActivate = function()
+    {
+      e.action();
+      f.tile = new Tile(misc,6,0);
+    }
+  }else{
+    f.tile.onActivate = function()
+    {
+      f.tile = new Tile(misc,6,0);
+      let i;
+      if(t > 0)
+      {
+        i = generate_item(current_level+1);
+      }else{
+        i = generate_item(current_level);
+      }
+      i.x = f.x;
+      i.y = f.y;
+      board.items.push(i);
+    };
+  } 
   return f;
 }
 
