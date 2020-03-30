@@ -8,10 +8,6 @@ function QuestEvent(n,x,y)
   console.log("event: " + this.name + "x: " + x + " y: " + y);
 }
 
-QuestEvent.prototype.setTriggered = function(t){
-  this.triggered = t;
-};
-
 QuestEvent.prototype.action = function(){
   if(this.triggered == false)
   {
