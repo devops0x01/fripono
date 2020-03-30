@@ -141,11 +141,11 @@ var npcs = [
     for(let i = 0; i < num_items; i++)
     {
       item = generate_item(current_level);
-      npc.trade_items.push([item,10]);
+      npc.trade_items.push([item,10-(p.intelligence/4)]);
     }
 
-    npc.trade_items.push([generate_item(current_level+1),20]);
-    npc.trade_items.push([generate_item(current_level+2),30]);
+    npc.trade_items.push([generate_item(current_level+1),20-(p.intelligence/4)]);
+    npc.trade_items.push([generate_item(current_level+2),30-(p.intelligence/4)]);
 
     /*
     npc.trade_items = [
