@@ -79,6 +79,50 @@ function generate_jewelry(level)
   return l[r]();
 }
 
+function make_item(n,tx,ty,a,d)
+{
+  let i = new Item(n,new Tile(misc,tx,ty),0,0);
+  i.slot_type = "hold1";
+  i.attack = a;
+  i.onEquip = function(){this.equipped = true;p.attack += a;};
+  i.onUnequip = function(){this.equipped = false;p.attack -= a;};
+  i.tile.description = d;
+
+  return i;
+}
+
+function make_pick()
+{
+  let i = make_item("pick",6,3,3,"a pick")
+  //i.onUse = function(){console.log("Used pickaxe");}
+  i.onUse = function()
+  {
+    console.log("Used pickaxe");
+    //board.furniture.forEach
+    //( f =>
+    //  console.log("furniture: " + f.name)
+    //);
+    board.furniture.forEach
+    (
+      function(f)
+      {
+	console.log("furniture: " + f.name + " x: " + f.x + " y: " + f.y);
+	if(f.x == p.x && f.y == p.y)
+	{
+          if(f.name == "broken wall")
+  	  {
+	    console.log("found: " + f.name);
+            let j = new Item("jewels",new Tile(misc,5,1),f.x,f.y);
+	    board.items.push(j);
+	  }
+	}
+      }
+    )
+  }
+
+  return i;
+}
+
 function make_weapon(n,tx,ty,a,d)
 {
   let i = new Item(n,new Tile(weapons,tx,ty),0,0);
@@ -386,6 +430,7 @@ function generate_weapon(level)
             function(){return make_weapon("spiked mace",0,2,11,"a spiked mace");},
             function(){
               let i = make_weapon("trident",9,2,12,"a trident");
+              i.equip_message = "Channel your inner Neptune!"
               i.two_handed = true;
               return i;
             },

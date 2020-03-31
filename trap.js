@@ -1,7 +1,7 @@
 
 function Trap(n,t,x,y)
 {
-  Furniture.call(this,t,x,y);
+  Furniture.call(this,n,t,x,y);
   Trap.prototype = Object.create(Furniture.prototype);
   
   this.hidden = true;

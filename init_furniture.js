@@ -1,7 +1,7 @@
 
 function make_furniture(g,n,tx,ty)
 {
-  let c = new Furniture(new Tile(g,tx,ty),0,0);
+  let c = new Furniture(n,new Tile(g,tx,ty),0,0);
   return c;
 }
 

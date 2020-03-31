@@ -31,6 +31,11 @@ window.onkeypress = handleKeypress;
 
 var p = new Player(new Tile(player,0,0),0,0);
 
+// TESTING picks
+//p.items.push(make_item("pick",6,3,3,"a pick"));
+p.items.push(make_pick());
+
+
 //give the player a few starting items
 p.items.push(make_weapon("dagger",6,0,2,"a dagger"));
 p.items.push(make_armor("tattered robe",3,3,"body",1,0,"a tattered robe"));

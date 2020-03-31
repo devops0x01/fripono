@@ -5,6 +5,8 @@ function Item(n,t,x,y)
   this.tile = t;
   this.x = x;
   this.y = y;
+
+  this.equip_message = null;
   
   this.weight = 0;
   
@@ -32,6 +34,11 @@ function Item(n,t,x,y)
 
 Item.prototype.onEquip = function()
 {
+  //TODO: Why isn't the equip message working?
+  if(this.equip_message)
+  {
+    console.log(this.equip_message);
+  }
   this.equipped = true;
 };
 

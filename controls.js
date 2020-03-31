@@ -338,7 +338,7 @@ function creatureHere(x,y)
         //put a skeleton where the creature died
         let cx = board.creatures[ci].x;
         let cy = board.creatures[ci].y;
-        let f = new Furniture(new Tile(misc,5,6),cx,cy);
+        let f = new Furniture("skeleton",new Tile(misc,5,6),cx,cy);
         board.furniture.push(f);
         
         //if the creature is a boss then
