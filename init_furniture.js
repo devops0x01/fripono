@@ -112,7 +112,11 @@ function make_chest(t)
 var type1_furniture = 
           [
             function(){return make_furniture(actions,"chair",7,0);},
-            function(){return make_furniture(misc,"broken wall",6,7);},
+            function(){
+		    f = make_furniture(misc,"broken wall",6,7);
+		    f.has_jewels = true;
+		    return f;
+	    },
             function(){return make_furniture(misc,"mammal bones",0,7);},
             function(){return make_furniture(edging3,"fountain",2,9);},
             function(){return make_chest(0);},

@@ -540,7 +540,7 @@ function handleKeypress(e)
         //console.log("getting item: " + board.items[bi].name);
         screen_messages.unshift("pickedup item: " + board.items[bi].name);
        
-        if(board.items[bi].name != "gold")
+        if(board.items[bi].name != "gold" && board.items[bi].name != "jewels")
         {
           p.items.push(board.items[bi]);
         }

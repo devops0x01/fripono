@@ -112,8 +112,18 @@ function make_pick()
           if(f.name == "broken wall")
   	  {
 	    console.log("found: " + f.name);
-            let j = new Item("jewels",new Tile(misc,5,1),f.x,f.y);
-	    board.items.push(j);
+	    if(f.has_jewels == true)
+            {
+              let j = new Item("jewels",new Tile(misc,5,1),f.x,f.y);
+              j.tile.description = "a pile of jewels";
+	      j.onPickup = function()
+	      {
+	        p.gold += 10*(current_level+1);
+	        p.updateStats();
+	      };
+	      board.items.push(j);
+              f.has_jewels = false;
+	    }
 	  }
 	}
       }
