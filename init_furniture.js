@@ -38,7 +38,7 @@ function make_grave()
     {
       if(this.triggered == false)
       {
-        let enemy = make_enemy(undead,"grave skeleton",0,6,10*current_level/2,10*current_level,"a ");
+        let enemy = make_enemy(undead,"grave skeleton",0,6,10*current_level/2,10*(current_level+1),"a ");
         enemy.x = c.x;
         enemy.y = c.y;
         console.log("creature: " + enemy.name + "x: " + enemy.x + " y: " + enemy.y);
@@ -77,7 +77,7 @@ function make_chest(t)
     {
       if(this.triggered == false)
       {
-        let enemy = make_enemy(undead,"grave skeleton",0,6,10*current_level/2,10*current_level,"a ");
+        let enemy = make_enemy(undead,"grave skeleton",0,6,10*current_level/2,10*(current_level+1),"a ");
         enemy.x = f.x;
         enemy.y = f.y;
         console.log("creature: " + enemy.name + "x: " + enemy.x + " y: " + enemy.y);
