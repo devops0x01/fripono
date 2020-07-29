@@ -41,9 +41,11 @@ p.items.push(make_weapon("dagger",6,0,2,"a dagger"));
 p.items.push(make_armor("tattered robe",3,3,"body",1,0,"a tattered robe"));
 
 //equip the items we gave to the player
-p.selected_item = 0;
-p.equip();
+//p.selected_item = 0;
+//p.equip();
 p.selected_item = 1;
+p.equip();
+p.selected_item = 2;
 p.equip();
 p.selected_item = null;
 
