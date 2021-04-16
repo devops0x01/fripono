@@ -701,6 +701,29 @@ var unique_items = [
     return i;
   },
 
+  function ring_of_strength(){
+    let i = new Item("Ring of Strength",new Tile(jewels,3,0),0,0);
+    i.tile.description = "The Ring of Strength";
+    i.slot_type = [];
+    i.history = "dum ditty dum ditty dum dum dum" +
+                ".";
+    i.onEquip = function()
+    {
+      this.equipped = true;
+      p.strength += 10;
+      p.updateStats();
+    };
+    
+    i.onUnequip = function()
+    {
+      this.equipped = false;
+      p.strength -= 10;
+      p.updateStats();
+    };
+    
+    return i;
+  },
+
   function bust_of_jemal(){
     let i = new Item("Bust of the noble warrior",new Tile(actions,5,8),0,0);
     i.tile.description = "The bust of the noble warrior";
